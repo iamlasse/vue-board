@@ -51,7 +51,7 @@ const store = new Vuex.Store({
           text: payload.card.text
         }
         var index = from.cards.findIndex(el => el.id == payload.card.id)
-        to.cards.push(card)
+        to.cards.unshift(card)
         from.cards.splice(index, 1)
 
 
