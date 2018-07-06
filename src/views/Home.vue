@@ -1,36 +1,58 @@
 <template>
-  <div>
-    <section class="hero">
-      <div class="hero-body">
-        <div class="container">
-          <h1 class="title">
-            <HelloWorld msg="Welcome to Triplebyte Interview App" />
-          </h1>
-          <h2 class="subtitle">
-            Add more stuff here
-          </h2>
-        </div>
+  <div class="board-wrapper">
+    <div class="board-container">
+
+      <div class="board-item" v-for="board in allBoards" :key="board.id">
+        <Board :board="board" />
       </div>
-    </section>
+    </div>
   </div>
 </template>
 
 <script>
   // @ is an alias to /src
-  import HelloWorld from '@/components/HelloWorld.vue'
+  import Board from '@/components/Board.vue'
   export default {
     name: 'home',
     components: {
-      HelloWorld
+      Board
+    },
+    computed: {
+      allBoards(){
+        return this.$store.getters.allBoards
+      }
     },
     data() {
       return {
         isActive: false
       }
     },
-    methods: {}
+    created (){
+      this.getBoards()
+    },
+    methods: {
+      getBoards(){
+        // this.$store.commit('getBoards')
+      }
+    }
   }
 </script>
 
 <style lang="scss" scoped>
+  .board-wrapper {
+    padding: 25px;
+  }
+  .board-container {
+    display: flex;
+  }
+  .board-item {
+    width: 25%;
+    padding: 0 12.5px;
+    &:first-child {
+      padding-left: 0;
+    }
+    &:last-child {
+      padding-right: 0;
+    }
+  }
 </style>
