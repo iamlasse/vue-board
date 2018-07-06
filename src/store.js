@@ -24,6 +24,11 @@ const store = new Vuex.Store({
     storage: window.sessionStorage
   })],
   mutations: {
+    updateBoard(state, board){
+      var foundBoard = _.find(state.boards, {id: board.id})
+
+      foundBoard = board
+    },
     addCard(state, payload) {
       var board = _.find(state.boards, {id: payload.id})
       var lastId = board.id * 100
@@ -61,7 +66,7 @@ const store = new Vuex.Store({
 
   },
   getters: {
-    allBoards: (state, getters) => state.boards
+    allBoards: (state, getters) => _.sortBy(state.boards, 'id')
   }
 })
 

@@ -19,7 +19,7 @@
     },
     computed: {
       allBoards(){
-        return this.$store.getters.allBoards
+        return this.$store.getters.allBoards.sort()
       }
     },
     data() {
@@ -44,9 +44,13 @@
   }
   .board-container {
     display: flex;
+    flex-wrap: wrap;
+    overflow-x: scroll;
+    justify-content: flex-start;
   }
   .board-item {
     width: 25%;
+    margin-bottom: 20px;
     padding: 0 12.5px;
     &:first-child {
       padding-left: 0;
