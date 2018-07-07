@@ -1,5 +1,5 @@
 {
-  "name": "triplebyte-vue-noes",
+  "name": "triplebyte-vue-app",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -19,10 +19,13 @@
     "iview": "^2.14.3",
     "js-cookie": "^2.2.0",
     "lodash": "^4.17.10",
+    "moment": "^2.22.2",
+    "momentjs": "^2.0.0",
     "npm": "^6.1.0",
     "nprogress": "^0.2.0",
     "register-service-worker": "^1.0.0",
     "uuid": "^3.3.2",
+    "v-offline": "^1.0.9",
     "vue": "^2.5.16",
     "vue-router": "^3.0.1",
     "vuedraggable": "^2.16.0",

@@ -4,12 +4,13 @@ import _ from 'lodash'
 import boards from '@/static/boards.js'
 import uuidv1 from 'uuid/v1'
 import createPersistedState from "vuex-persistedstate";
-import * as Cookies from "js-cookie";
+
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state: {
-    boards
+    boards,
+    notes: []
   },
   plugins: [createPersistedState({
     key: 'boardapp',
@@ -17,9 +18,9 @@ const store = new Vuex.Store({
   })],
   mutations: {
     updateBoard(state, board){
-      var foundBoard = _.find(state.boards, {id: board.id})
-
-      foundBoard = board
+      var foundBoard = state.boards[board]
+      if(foundBoard)
+        foundBoard = board
     },
     addCard(state, payload) {
       var board = state.boards[payload.board]
@@ -33,21 +34,40 @@ const store = new Vuex.Store({
         const to = state.boards[payload.to]
         from.cards = from.cards.filter(c => c.id !== payload.card.id)
         to.cards = to.cards.concat(payload.card)
+    },
+    deleteCard(state, {index, card}){
+      const board = state.boards[index]
+      board.cards = board.cards.filter(c => c.id !== card)
+    },
+    saveCard(state, {index, card}){
+      // console.log(card, index);
+      const foundBoard = state.boards[index]
+      const foundCardIndex = _.find(foundBoard.cards, {id: card.id})
+      foundBoard.cards[foundCardIndex] = card
+    },
+    addNote(state, {card, note, time}){
+      console.log(card, note);
+      state.notes = state.notes.concat({
+        cardId: card.id,
+        note,
+        time
+      })
+
     }
   },
   actions: {
 
   },
   getters: {
-    boards: (state, getters) => _.sortBy(state.boards, 'id')
+    boards: (state, getters) => _.sortBy(state.boards, 'id'),
+    notesForCard: state => card => state.notes.filter(note => note.cardId == card.id)
   }
 })
 
 store.subscribe((mutation, state) => {
-  console.log(mutation, state);
-
+  console.log('Save State', mutation, state);
   // Store the state object as a JSON string
-  localStorage.setItem('boards', JSON.stringify(state.boards));
+  window.sessionStorage.setItem('boardapp', JSON.stringify(state));
 });
 
 export default store

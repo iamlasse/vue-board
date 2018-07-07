@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/Home.vue'
+import Boards from './views/Boards.vue'
 import About from './views/About.vue'
 import NProgress from 'nprogress'
 
@@ -11,8 +11,8 @@ const router = new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: Home
+      name: 'boards',
+      component: Boards
     },
     {
       path: '/about',

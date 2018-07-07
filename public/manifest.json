@@ -1,6 +1,6 @@
 {
-  "name": "triplebyte-vue-noes",
-  "short_name": "triplebyte-vue-noes",
+  "name": "triplebyte-vue-app",
+  "short_name": "triplebyte-vue-app",
   "icons": [
     {
       "src": "/img/icons/android-chrome-192x192.png",

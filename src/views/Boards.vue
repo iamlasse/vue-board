@@ -1,7 +1,6 @@
 <template>
   <div class="board-wrapper">
     <div class="board-container">
-
       <div class="board-item" v-for="(board, index) in boards" :key="board.id">
         <Board :board="board" :index="index" />
       </div>
@@ -11,9 +10,9 @@
 
 <script>
   // @ is an alias to /src
-  import Board from '@/components/Board.vue'
+  import Board from '@/components/board/Board.vue'
   export default {
-    name: 'home',
+    name: 'Boards',
     components: {
       Board
     },

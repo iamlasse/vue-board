@@ -1,0 +1,41 @@
+.notes-wrapper {
+  background: #fff;
+  padding: 2em;
+  border-radius: 10px;
+
+  h2 {
+    text-align: center;
+  }
+}
+
+.notes-list {
+  height: 150px;
+  overflow-y: scroll;
+
+  li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .5em 0;
+
+    em {
+      font-size: 80%;
+      font-style: normal;
+      color: darken(#fff, 30);
+    }
+  }
+}
+
+.empty-notes {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: darken(#fff, 30);
+  border: 1px dotted darken(#fff, 10);
+}
+
+.note-add {
+  // color: #a59e90;
+  margin-top: 10px;
+}

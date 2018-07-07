@@ -1,60 +1,45 @@
 import uuidv1 from 'uuid/v1'
 const createId = () => uuidv1()
-export default [{
-    id: createId(),
-    background: '#8E6E95',
-    title: 'Winnie',
-    cards: [{
-        id: createId(),
-        text: 'Text 100'
-      },
-      {
-        id: createId(),
-        text: 'Text 101'
-      }
-    ]
+const people = [
+  {
+    name: 'Winnie',
+    color: '#8E6E95'
   },
   {
-    id: createId(),
-    background: '#39A59C',
-    title: 'Bob',
-    cards: [{
-        id: createId(),
-        text: 'Text 200'
-      },
-      {
-        id: createId(),
-        text: 'Text 201'
-      },
-    ]
+    name: 'Bob',
+    color: '#39A59C'
   },
   {
-    id: createId(),
-    background: '#344759',
-    title: 'Thomas',
-    cards: [{
-        id: createId(),
-        text: 'Text 300'
-      },
-      {
-        id: createId(),
-        text: 'Text 301'
-      }
-    ]
+    name: 'Thomas',
+    color: '#344759'
   },
   {
-    id: createId(),
-    background: '#E8741E',
-    title: 'George',
-    cards: [{
-        id: createId(),
-        text: 'Text 400'
-      },
-      {
-        id: createId(),
-        text: 'Text 401'
-      }
-    ]
+    name: 'George',
+    color: '#E8741E'
   }
 ]
+
+const createBoards = () => {
+  var boards = []
+  people.forEach(person => {
+    const cards = [{
+      id: createId(),
+      text: 'Quis duis anim velit sunt irure qui sunt veniam aute nulla et.',
+    }, {
+      id: createId(),
+      text: 'Quis duis anim velit sunt irure qui sunt veniam aute nulla et.'
+    }]
+
+    boards.push({
+      id: createId(),
+      title: person.name,
+      background: person.color,
+      cards
+    })
+  })
+
+  return boards
+}
+
+export default createBoards()
 

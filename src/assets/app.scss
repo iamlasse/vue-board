@@ -24,3 +24,33 @@
     }
   }
 }
+
+  .connection-header {
+    padding: 0.3em 0;
+    position: absolute;
+    top: 0px;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgb(189, 77, 77);
+    color: #fff;
+  }
+
+  .fade-enter-active {
+    transition: all .6s ease;
+  }
+
+  .fade-leave-active {
+    transition: all .3s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+  }
+
+  .fade-enter,
+  .fade-leave-to
+  /* .slide-fade-leave-active below version 2.1.8 */
+
+    {
+    transform: translateY(-30px);
+    opacity: 0;
+  }
