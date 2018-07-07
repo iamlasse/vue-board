@@ -2,25 +2,17 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import _ from 'lodash'
 import boards from '@/static/boards.js'
-// import VuexPersistence from 'vuex-persist'
+import uuidv1 from 'uuid/v1'
 import createPersistedState from "vuex-persistedstate";
 import * as Cookies from "js-cookie";
 Vue.use(Vuex)
-
-// const vuexLocal = new VuexPersistence({
-//   key: 'vuex-app',
-//   storage: window.localStorage,
-//   reducer: (state) => ({
-//     boards: state.boards
-//   }),
-//   filter: (mutation) => (mutation.type === 'moveCard' || mutation.type == 'addCard')
-// })
 
 const store = new Vuex.Store({
   state: {
     boards
   },
   plugins: [createPersistedState({
+    key: 'boardapp',
     storage: window.sessionStorage
   })],
   mutations: {
@@ -30,49 +22,32 @@ const store = new Vuex.Store({
       foundBoard = board
     },
     addCard(state, payload) {
-      var board = _.find(state.boards, {id: payload.id})
-      var lastId = board.id * 100
-      if(board.cards.length)
-        lastId = board.cards[board.cards.length - 1].id +1
-
-      board.cards.push({
-        id: lastId,
+      var board = state.boards[payload.board]
+      board.cards = board.cards.concat({
+        id: uuidv1(),
         text: payload.text
       })
     },
     moveCard(state, payload){
-
-        var from = _.find(state.boards, {
-          id: payload.from
-        })
-
-        var to = _.find(state.boards, {
-          id: payload.to
-        })
-
-       console.log(to.cards.length + to.id*100)
-        var card = {
-          id: to.id * 100 + to.cards.length,
-          text: payload.card.text
-        }
-        var index = from.cards.findIndex(el => el.id == payload.card.id)
-        to.cards.unshift(card)
-        from.cards.splice(index, 1)
-
-
+        const from = state.boards[payload.from]
+        const to = state.boards[payload.to]
+        from.cards = from.cards.filter(c => c.id !== payload.card.id)
+        to.cards = to.cards.concat(payload.card)
     }
   },
   actions: {
 
   },
   getters: {
-    allBoards: (state, getters) => _.sortBy(state.boards, 'id')
+    boards: (state, getters) => _.sortBy(state.boards, 'id')
   }
 })
 
 store.subscribe((mutation, state) => {
+  console.log(mutation, state);
+
   // Store the state object as a JSON string
-  // localStorage.setItem('boards', JSON.stringify(state.boards));
+  localStorage.setItem('boards', JSON.stringify(state.boards));
 });
 
 export default store

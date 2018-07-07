@@ -1,85 +1,60 @@
+import uuidv1 from 'uuid/v1'
+const createId = () => uuidv1()
 export default [{
-    id: 1,
+    id: createId(),
     background: '#8E6E95',
     title: 'Winnie',
     cards: [{
-        id: 100,
+        id: createId(),
         text: 'Text 100'
       },
       {
-        id: 101,
+        id: createId(),
         text: 'Text 101'
       }
     ]
   },
   {
-    id: 5,
-    background: '#844E95',
-    title: 'Joe',
-    cards: [{
-        id: 500,
-        text: 'Text 100'
-      },
-      {
-        id: 501,
-        text: 'Text 101'
-      }
-    ]
-  },
-  {
-    id: 6,
-    background: '#336E95',
-    title: 'Dolores',
-    cards: [{
-        id: 600,
-        text: 'Text 100'
-      },
-      {
-        id: 601,
-        text: 'Text 101'
-      }
-    ]
-  },
-  {
-    id: 2,
+    id: createId(),
     background: '#39A59C',
     title: 'Bob',
     cards: [{
-        id: 200,
+        id: createId(),
         text: 'Text 200'
       },
       {
-        id: 201,
+        id: createId(),
         text: 'Text 201'
       },
     ]
   },
   {
-    id: 3,
+    id: createId(),
     background: '#344759',
     title: 'Thomas',
     cards: [{
-        id: 300,
+        id: createId(),
         text: 'Text 300'
       },
       {
-        id: 301,
+        id: createId(),
         text: 'Text 301'
       }
     ]
   },
   {
-    id: 4,
+    id: createId(),
     background: '#E8741E',
     title: 'George',
     cards: [{
-        id: 400,
+        id: createId(),
         text: 'Text 400'
       },
       {
-        id: 401,
+        id: createId(),
         text: 'Text 401'
       }
     ]
   }
 ]
+

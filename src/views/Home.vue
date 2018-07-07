@@ -2,8 +2,8 @@
   <div class="board-wrapper">
     <div class="board-container">
 
-      <div class="board-item" v-for="board in allBoards" :key="board.id">
-        <Board :board="board" />
+      <div class="board-item" v-for="(board, index) in boards" :key="board.id">
+        <Board :board="board" :index="index" />
       </div>
     </div>
   </div>
@@ -18,8 +18,8 @@
       Board
     },
     computed: {
-      allBoards(){
-        return this.$store.getters.allBoards.sort()
+      boards(){
+        return this.$store.getters.boards.sort()
       }
     },
     data() {

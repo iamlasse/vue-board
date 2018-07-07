@@ -7,7 +7,7 @@
       <h3>Add a card</h3>
     </div> -->
     <draggable element="div" class="dragArea" :class="{'is-empty': !board.cards.length}"
-      v-model="board.cards" :options="dragOptions" :move="onMove" @change="movedCard">
+      v-model="board.cards" :options="dragOptions" :move="onMove" @change="updateBoard">
       <Card v-for="(card, index) in board.cards" :key="index" class="list-group-item" @move="moveCard"
         :card="card" />
 
@@ -27,7 +27,7 @@
 import draggable from 'vuedraggable'
 import Card from '@/components/Card.vue'
 export default {
-  props: ['board'],
+  props: ['board', 'index'],
   components: {Card, draggable},
   computed: {
     dragOptions () {
@@ -41,7 +41,7 @@ export default {
     },
   },
   methods: {
-    movedCard(added, removed, moved){
+    updateBoard(added, removed, moved){
       this.$store.commit('updateBoard', this.board)
     },
     onMove ({relatedContext, draggedContext}) {
@@ -54,23 +54,20 @@ export default {
       if(cardText){
         var cardCount = this.board.cards.length
       this.$store.commit('addCard', {
-        id: this.board.id,
+        board: this.index,
         text: cardText
       })
       }
     },
     moveCard(loc, card){
-      var to = undefined
-      if(loc == 'left' && this.board.id <= 1) return;
-      if(loc == 'right' && this.board.id >= this.$store.getters.allBoards.length) return;
-      if(loc == 'left'){
-        to = this.board.id - 1
-      } else if(loc == 'right'){
-        to = this.board.id + 1
-      }
+      if(
+        (this.index <= 0 && loc == 'left') ||
+        (this.index >= this.$store.getters.boards.length && loc == 'right')
+      ) return
+
       this.$store.commit('moveCard', {
-        from: this.board.id,
-        to,
+        from: this.index,
+        to: loc == 'left' ? this.index-1 : this.index+1,
         card
       })
     }
