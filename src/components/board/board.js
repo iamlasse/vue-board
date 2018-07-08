@@ -7,6 +7,9 @@ export default {
     draggable
   },
   computed: {
+    cards(){
+      return this.$store.getters.totalCards
+    },
     dragOptions() {
       return {
         animation: 0,

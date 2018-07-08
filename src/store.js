@@ -60,7 +60,8 @@ const store = new Vuex.Store({
   },
   getters: {
     boards: (state, getters) => _.sortBy(state.boards, 'id'),
-    notesForCard: state => card => state.notes.filter(note => note.cardId == card.id)
+    notesForCard: state => card => state.notes.filter(note => note.cardId == card.id),
+    totalCards: state => state.boards.reduce((arr, board) => arr.concat(board.cards.map(card => card.id)), [])
   }
 })
 

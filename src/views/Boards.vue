@@ -1,5 +1,11 @@
 <template>
   <div class="board-wrapper">
+    <div class="card-count-wrapper">
+      <b-taglist attached>
+        <b-tag type="is-dark">Total Cards</b-tag>
+        <b-tag type="is-info">{{cards.length}}</b-tag>
+      </b-taglist>
+    </div>
     <div class="board-container">
       <div class="board-item" v-for="(board, index) in boards" :key="board.id">
         <Board :board="board" :index="index" />
@@ -17,8 +23,11 @@
       Board
     },
     computed: {
+      cards(){
+        return this.$store.getters.totalCards
+      },
       boards(){
-        return this.$store.getters.boards.sort()
+        return this.$store.getters.boards
       }
     },
     data() {
@@ -57,5 +66,11 @@
     &:last-child {
       padding-right: 0;
     }
+  }
+
+  .card-count-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
   }
 </style>
