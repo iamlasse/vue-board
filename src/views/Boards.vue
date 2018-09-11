@@ -2,8 +2,8 @@
   <div class="board-wrapper">
     <div class="card-count-wrapper">
       <b-taglist attached>
-        <b-tag type="is-dark">Total Cards</b-tag>
-        <b-tag type="is-info">{{cards.length}}</b-tag>
+        <b-tag rounded size="is-medium" type="is-light">Total Cards</b-tag>
+        <b-tag rounded size="is-medium" type="is-primary">{{cards}}</b-tag>
       </b-taglist>
     </div>
     <div class="board-container">

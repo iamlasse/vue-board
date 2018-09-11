@@ -1,6 +1,5 @@
 <template>
   <div class="" id="app">
-
     <offline @detected-condition="handleConnectivityChange"></offline>
     <transition name="fade">
       <div class="connection-header" v-show="!online">
@@ -8,8 +7,6 @@
       </div>
     </transition>
     <header>
-      <!-- <router-link to="/"><img src="@/assets/logo.1.png"></router-link> -->
-
     <div id="nav">
       <router-link to="/">Boards</router-link> |
       <router-link to="/about">About</router-link>
@@ -18,6 +15,7 @@
     <section>
       <router-view/>
     </section>
+
   </div>
 </template>
 
@@ -31,6 +29,8 @@ export default {
     return {
       online: true
     }
+  },
+  mounted(){
   },
   methods: {
     handleConnectivityChange(status) {

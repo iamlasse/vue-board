@@ -1,13 +1,13 @@
 import Notes from '@/components/notes/Notes.vue'
 
 export default {
-  props: ['card'],
-  watch: {
+  props : ['card'],
+  watch : {
     editing(n, o) {
       // console.log(n, o);
-      if (n == true)
+      if (n == true) 
         this.$refs.note.focus()
-      else
+      else 
         this.saveCard()
     }
   },
@@ -17,7 +17,16 @@ export default {
   beforeDestroy() {
     window.removeEventListener('keyup', this.saveCardEnter)
   },
-  methods: {
+  computed : {
+    numberNotes() {
+      return this
+        .$store
+        .getters
+        .notesForCard(this.card)
+        .length || 0
+    }
+  },
+  methods : {
     saveCardEnter(e) {
       if (e.which === 13 || e.code === 'Enter' || e.keyCode === 13) {
         // console.log('Save card press enter', e);
@@ -25,7 +34,7 @@ export default {
       }
     },
     saveCard() {
-      console.log('Save Card?');
+      // console.log('Save Card?');
 
       this.$emit('save', this.card)
       this.editing = false
@@ -38,18 +47,18 @@ export default {
     },
     showNotes() {
       console.log('Show notes for card ', this.card);
-      this.$modal.open({
-        parent: this,
-        props: {
-          card: this.card
-        },
-        component: Notes,
-      })
+      this
+        .$modal
+        .open({
+          parent: this,
+          props: {
+            card: this.card
+          },
+          component: Notes
+        })
     }
   },
   data() {
-    return {
-      editing: false
-    }
+    return {editing: false}
   }
 }

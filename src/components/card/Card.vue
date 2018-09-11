@@ -18,6 +18,9 @@
       </form>
       <p v-show="!editing">{{card.text}}</p>
       <span class="card-actions">
+        <b-taglist v-show="numberNotes">
+          <b-tag rounded size="is-small" type="is-primary">{{numberNotes}}</b-tag>
+        </b-taglist>
         <i class="mdi mdi-note-outline" @click="showNotes"></i>
         <i class="mdi mdi-delete-circle" @click="deleteCard"></i>
       </span>

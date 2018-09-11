@@ -4,7 +4,7 @@
       <span>{{board.title}}</span>
     </div>
     <draggable element="div" class="dragArea" :class="{'is-empty': !board.cards.length}"
-      v-model="board.cards" :options="dragOptions" :move="onMove" @change="updateBoard">
+      v-model="board.cards" :options="dragOptions" :move="onMove" @end="updateBoard">
       <Card :tabindex="index" v-for="(card, index) in board.cards" :key="index"
         class="list-group-item" @save="saveCard" @move="moveCard" @delete="deleteCard" :card="card"
       />

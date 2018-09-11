@@ -1,62 +1,63 @@
 form {
-  flex: 1;
+	flex: 1;
 }
 
 .card {
-  margin: 10px 0;
-  border-radius: 3px;
-  box-shadow: none;
-  transition: box-shadow .2s ease;
+	margin: 10px 0;
+	border-radius: 3px;
+	box-shadow: none;
+	transition: box-shadow .2s ease;
 
-  &:hover {
-    box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1);
-  }
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+	&:hover {
+		box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1);
+	}
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 
-  &:hover {
-    .card-body .card-actions i {
-      opacity: 1;
-    }
-  }
+	&:hover {
+		.card-body .card-actions i,
+		.card-body .card-actions .tags {
+			opacity: 1;
+		}
+	}
 
-  .arrow {
-    padding: 10px;
-    cursor: pointer;
+	.arrow {
+		padding: 10px;
+		cursor: pointer;
 
-    i {
-      font-size: 200%;
-      color: darken(#fff, 20);
-    }
-  }
+		i {
+			font-size: 200%;
+			color: darken(#fff, 20);
+		}
+	}
 
-  .card-body {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    text-align: left;
-    flex: 2;
+	.card-body {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		text-align: left;
+		flex: 2;
 
-    .card-actions {
-      min-width: 50px;
-      justify-content: flex-end;
-      display: flex;
+		.card-actions {
+			min-width: 50px;
+			justify-content: flex-end;
+			display: flex;
 
-      i {
-        font-size: 130%;
-        display: inline-block;
-        opacity: 0;
+			i,
+			.tags {
+				font-size: 130%;
+				display: inline-block;
+				opacity: 0;
 
-        &.mdi-delete {
-          color: rgb(214, 83, 83);
-        }
+				&.mdi-delete {
+					color: rgb(214, 83, 83);
+				}
 
-        &.mdi-note {
-          color: rgb(110, 173, 231);
-        }
-      }
-    }
-  }
-
+				&.mdi-note {
+					color: rgb(110, 173, 231);
+				}
+			}
+		}
+	}
 }
