@@ -4,11 +4,10 @@
       <span>{{board.title}}</span>
     </div>
     <draggable element="div" class="dragArea" :class="{'is-empty': !board.cards.length}"
-      v-model="board.cards" :options="dragOptions" :move="onMove" @end="updateBoard">
+      v-model="board.cards" :options="dragOptions" :move="onMove" @end="updateBoardLocal">
       <Card :tabindex="index" v-for="(card, index) in board.cards" :key="index"
-        class="list-group-item" @save="saveCard" @move="moveCard" @delete="deleteCard" :card="card"
+        class="list-group-item" @save="saveCardLocal" @move="moveCardLocal" @delete="deleteCardLocal" :card="card"
       />
-
     </draggable>
     <a class="button" @click="promptUser">
       <strong>
@@ -21,8 +20,7 @@
   </div>
 </template>
 
-<script src="./board.js">
-</script>
+<script src="./board.js"></script>
 
 <style lang="scss" scoped>
 

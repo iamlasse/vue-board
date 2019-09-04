@@ -19,11 +19,9 @@ const store = new Vuex.Store({
       if (foundBoard) 
         foundBoard = board
     },
-    addCard(state, payload) {
-      var board = state.boards[payload.board]
-      board.cards = board
-        .cards
-        .concat({id: uuidv1(), text: payload.text})
+    addCard(state, {board, text}) {
+      if(!board && board !== 0) return false;
+      state.boards[board].cards = [...state.boards[board].cards, {id: uuidv1(), text}] 
     },
     moveCard(state, payload) {
       const from = state.boards[payload.from]
@@ -57,6 +55,9 @@ const store = new Vuex.Store({
     }
   },
   actions: {
+    addCard({commit, state}, {board, text}){
+      commit('addCard', {board, text});
+    },
     saveCard({
       commit,
       state

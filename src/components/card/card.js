@@ -1,3 +1,4 @@
+import {mapGetters} from 'vuex'
 import Notes from '@/components/notes/Notes.vue'
 
 export default {
@@ -18,12 +19,9 @@ export default {
     window.removeEventListener('keyup', this.saveCardEnter)
   },
   computed : {
+    ...mapGetters(['notesForCard']),
     numberNotes() {
-      return this
-        .$store
-        .getters
-        .notesForCard(this.card)
-        .length || 0
+      return this.notesForCard(this.card).length || 0
     }
   },
   methods : {

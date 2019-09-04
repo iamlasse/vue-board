@@ -16,6 +16,7 @@
 
 <script>
   // @ is an alias to /src
+  import {mapGetters} from 'vuex';
   import Board from '@/components/board/Board.vue'
   export default {
     name: 'Boards',
@@ -23,12 +24,7 @@
       Board
     },
     computed: {
-      cards(){
-        return this.$store.getters.totalCards
-      },
-      boards(){
-        return this.$store.getters.boards
-      }
+      ...mapGetters({cards: 'totalCards',  boards: 'boards'})
     },
     data() {
       return {

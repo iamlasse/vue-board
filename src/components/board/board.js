@@ -1,4 +1,5 @@
-import draggable from 'vuedraggable'
+import {mapGetters, mapActions} from 'vuex';
+import Draggable from 'vuedraggable'
 import Card from '@/components/card/Card.vue'
 export default {
   props : [
@@ -6,12 +7,13 @@ export default {
   ],
   components : {
     Card,
-    draggable
+    Draggable
   },
   computed : {
-    cards() {
-      return this.$store.getters.totalCards
-    },
+    ...mapGetters({
+      cards: 'totalCards',
+      boards: 'boards'
+    }),
     dragOptions() {
       return {
         animation: 0, group: 'cards',
@@ -22,10 +24,9 @@ export default {
     }
   },
   methods : {
-    updateBoard() {
-      this
-        .$store
-        .dispatch('updateBoard', this.index)
+    ...mapActions(['moveCard', 'updateBoard', 'saveCard', 'deleteCard', 'addCard']),
+    updateBoardLocal() {
+      this.updateBoard(this.index)
         .then(() => {
           this
             .$snackbar
@@ -41,21 +42,17 @@ export default {
       var cardText = window.prompt("Add A card");
       if (cardText) {
         var cardCount = this.board.cards.length
-        this
-          .$store
-          .commit('addCard', {
+        this.addCard({
             board: this.index,
             text: cardText
           })
       }
     },
-    moveCard(loc, card) {
-      if ((this.index <= 0 && loc == 'left') || (this.index >= this.$store.getters.boards.length && loc == 'right')) 
+    moveCardLocal(loc, card) {
+      if ((this.index <= 0 && loc == 'left') || (this.index >= this.boards.length && loc == 'right')) 
         return
 
-      this
-        .$store
-        .dispatch('moveCard', {
+      this.moveCard({
           from: this.index,
           to: loc == 'left'
             ? this.index - 1
@@ -64,19 +61,15 @@ export default {
         })
         .then(() => this.$snackbar.open({message: 'Card moved, Board saved', duration: 1000, queue: false}))
     },
-    deleteCard(card) {
-      this
-        .$store
-        .dispatch('deleteCard', {
+    deleteCardLocal(card) {
+      this.deleteCard({
           index: this.index,
           card: card.id
         })
         .then(() => this.$snackbar.open({duration: 1000, message: 'Card deleted'}))
     },
-    saveCard(card) {
-      this
-        .$store
-        .dispatch('saveCard', {
+    saveCardLocal(card) {
+      this.saveCard({
           index: this.index,
           card
         })
