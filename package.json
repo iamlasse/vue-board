@@ -13,7 +13,7 @@
     "@mdi/font": "^2.4.85",
     "@vuikit/icons": "^0.8.1",
     "@vuikit/theme": "^0.8.0",
-    "buefy": "^0.6.6",
+    "buefy": "^0.9.2",
     "element-ui": "^2.4.3",
     "i": "^0.3.6",
     "iview": "^2.14.3",
