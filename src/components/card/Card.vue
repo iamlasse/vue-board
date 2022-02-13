@@ -1,6 +1,7 @@
 <template>
   <div class="card">
-    <span class="arrow" @click="moveCard('left')">
+   <div class="card-wrap">
+      <span class="arrow" @click="moveCard('left')">
       <i class="mdi mdi-chevron-left"></i>
     </span>
     <div class="card-body" @click="editing = true">
@@ -17,17 +18,22 @@
         </b-field>
       </form>
       <p v-show="!editing">{{card.text}}</p>
-      <span class="card-actions">
-        <b-taglist v-show="numberNotes">
-          <b-tag rounded size="is-small" type="is-primary">{{numberNotes}}</b-tag>
-        </b-taglist>
-        <i class="mdi mdi-note-outline" @click="showNotes"></i>
-        <i class="mdi mdi-delete-circle" @click="deleteCard"></i>
-      </span>
     </div>
     <span class="arrow" @click="moveCard('right')">
       <i class="mdi mdi-chevron-right"></i>
     </span>
+   </div>
+      <div class="card-actions">
+        <div class="notes">
+          <span v-show="numberNotes">
+          Notes: <span class="n-number">{{numberNotes}}</span>
+        </span>
+        </div>
+        <div class="actions">
+          <i class="mdi mdi-note-outline" @click="showNotes"></i>
+        <i class="mdi mdi-delete-circle" @click="deleteCard"></i>
+        </div>
+      </div>
   </div>
 </template>
 
